@@ -1,0 +1,29 @@
+{
+    "manifest_version": 3,
+    "name": "Form Saver & Autofill",
+    "version": "1.0",
+    "description": "Save and restore form data with a button or shortcut",
+    "permissions": ["storage", "scripting","tabs"],
+    "host_permissions": ["<all_urls>"],
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["content.js"],
+            "run_at": "document_end"
+        }
+    ],
+    "commands": {
+        "autofill_form": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+F"
+            },
+            "description": "Autofill the last saved form"
+        }
+    }
+}
